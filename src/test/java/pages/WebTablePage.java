@@ -1,53 +1,43 @@
 package pages;
 
-import HelperMethods.ElementsMethods;
-import HelperMethods.JSHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class WebTablePage {
-
-    WebDriver driver;
-    public ElementsMethods elementsMethods;
-    public JSHelper jsHelper;
+public class WebTablePage extends CommonPage{
 
     public WebTablePage(WebDriver driver) {
-        this.driver = driver;
-        elementsMethods = new ElementsMethods(driver);
-        jsHelper = new JSHelper(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(xpath = "//div[@class=\"rt-tbody\"]/div/div[@class=\"rt-tr -odd\" or @class=\"rt-tr -even\"]")
-    List<WebElement> tableRows;
+    private List<WebElement> tableRows;
 
     @FindBy(id ="addNewRecordButton")
-    WebElement addButton;
+    private WebElement addButton;
 
     @FindBy(id = "firstName")
-    WebElement firstNameField;
+    private WebElement firstNameField;
 
     @FindBy(id = "lastName")
-    WebElement lastNameField;
+    private WebElement lastNameField;
 
     @FindBy(id = "userEmail")
-    WebElement userEmailField;
+    private WebElement userEmailField;
 
     @FindBy(id = "age")
-    WebElement ageField;
+    private WebElement ageField;
 
     @FindBy(id = "salary")
-    WebElement salaryField;
+    private WebElement salaryField;
 
     @FindBy(id = "department")
-    WebElement departmentField;
+    private WebElement departmentField;
 
     @FindBy(id = "submit")
-    WebElement submitButton;
+    private WebElement submitButton;
 
     public Integer getTableSize(){
         return elementsMethods.getElementsListSize(tableRows);

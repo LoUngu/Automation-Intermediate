@@ -11,9 +11,6 @@ import pages.HomePage;
 
 public class FramesTests extends BaseTest{
 
-    public ElementsMethods elementsMethods;
-    public FramesMethods framesMethods;
-    public JSHelper jsHelper;
     public HomePage homePage;
     public CommonPage commonPage;
     public FramesPage framesPage;
@@ -22,13 +19,10 @@ public class FramesTests extends BaseTest{
     @Test
     public void framesTests() {
 
-        elementsMethods = new ElementsMethods(driver);
-        framesMethods = new FramesMethods(driver);
-        jsHelper = new JSHelper(driver);
-        homePage = new HomePage(driver);
-        commonPage = new CommonPage(driver);
-        framesPage = new FramesPage(driver);
-        assertMethods = new AssertMethods(driver);
+        homePage = new HomePage(getDriver());
+        commonPage = new CommonPage(getDriver());
+        framesPage = new FramesPage(getDriver());
+        assertMethods = new AssertMethods(getDriver());
 
         homePage.goToDesiredMenuValue("Alerts, Frame & Windows");
         commonPage.goToDesiredElement("Frames");
@@ -36,7 +30,7 @@ public class FramesTests extends BaseTest{
         framesPage.switchToFirstFrameElement();
         assertMethods.verifyExpectedValueEqualsActualValue(framesPage.getTextFromHeading(), "This is a sample page");
 
-        framesMethods.switchToDefaultWindow();
+        framesPage.switchToDefaultWindow();
 
         framesPage.switchToSecondFrameElementAndScroll();
         assertMethods.verifyExpectedValueEqualsActualValue(framesPage.getTextFromHeading(), "This is a sample page");

@@ -6,31 +6,21 @@ import HelperMethods.JSHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class FramesPage {
-
-    WebDriver driver;
-    public ElementsMethods elementsMethods;
-    public JSHelper jsHelper;
-    public FramesMethods framesMethods;
+public class FramesPage extends CommonPage{
 
     public FramesPage(WebDriver driver) {
-        this.driver = driver;
-        framesMethods = new FramesMethods(driver);
-        elementsMethods = new ElementsMethods(driver);
-        jsHelper = new JSHelper(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(id = "frame1")
-    WebElement firstFrameElement;
+    private WebElement firstFrameElement;
 
     @FindBy(id = "frame2")
-    WebElement secondFrameElement;
+    private WebElement secondFrameElement;
 
     @FindBy(id = "sampleHeading")
-    WebElement frameSampleHeadingElement;
+    private WebElement frameSampleHeadingElement;
 
     public String getTextFromHeading(){
         return elementsMethods.retrieveElementText(frameSampleHeadingElement);
@@ -48,4 +38,9 @@ public class FramesPage {
         framesMethods.switchToFrame(secondFrameElement);
         jsHelper.scrollOnPage(200, 200);
     }
+
+    public void switchToDefaultWindow(){
+        framesMethods.switchToDefaultWindow();
+    }
+
 }

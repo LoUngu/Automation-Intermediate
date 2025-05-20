@@ -2,8 +2,6 @@ package Tests;
 
 import HelperMethods.AssertMethods;
 import HelperMethods.ElementsMethods;
-import HelperMethods.JSHelper;
-import org.openqa.selenium.*;
 import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;
@@ -14,8 +12,6 @@ import java.util.List;
 
 public class PracticeFormTest extends BaseTest {
 
-    public ElementsMethods elementsMethods;
-    public JSHelper jsHelper;
     public HomePage homePage;
     public CommonPage commonPage;
     public AssertMethods assertMethods;
@@ -24,12 +20,10 @@ public class PracticeFormTest extends BaseTest {
     @Test
     public void fillInTheForm() {
 
-        elementsMethods = new ElementsMethods(driver);
-        jsHelper = new JSHelper(driver);
-        homePage = new HomePage(driver);
-        commonPage = new CommonPage(driver);
-        assertMethods = new AssertMethods(driver);
-        practiceFormPage = new PracticeFormPage(driver);
+        homePage = new HomePage(getDriver());
+        commonPage = new CommonPage(getDriver());
+        assertMethods = new AssertMethods(getDriver());
+        practiceFormPage = new PracticeFormPage(getDriver());
 
         homePage.goToDesiredMenuValue("Forms");
         commonPage.goToDesiredElement("Practice Form");
@@ -52,13 +46,8 @@ public class PracticeFormTest extends BaseTest {
 
         practiceFormPage.clickOnSubmit();
 
-        List<WebElement> table2 = driver.findElements(By.xpath("//tr"));
-
-        elementsMethods.explicitlyWaitElementVisibility(table2.get(0));
-        assertMethods.verifyExpectedValueEqualsActualValue(table2.get(0).getText(), "Label Values");
-        assertMethods.verifyExpectedValueEqualsActualValue(table2.get(1).getText(), "Student Name Ion Popescu");
-        assertMethods.verifyExpectedValueEqualsActualValue(table2.get(2).getText(), "Student Email ion.popescu@email.com");
-
-
+        assertMethods.verifyExpectedValueEqualsActualValue(practiceFormPage.getTableRowText(0), "Label Values");
+        assertMethods.verifyExpectedValueEqualsActualValue(practiceFormPage.getTableRowText(1), "Student Name Ion Popescu");
+        assertMethods.verifyExpectedValueEqualsActualValue(practiceFormPage.getTableRowText(2), "Student Email ion.popescu@email.com");
     }
 }

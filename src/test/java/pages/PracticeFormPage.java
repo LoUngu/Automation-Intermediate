@@ -1,72 +1,71 @@
 package pages;
 
-import HelperMethods.ElementsMethods;
-import HelperMethods.JSHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
 import java.util.Arrays;
 import java.util.List;
 
-public class PracticeFormPage {
-    WebDriver driver;
-    public ElementsMethods elementsMethods;
-    public JSHelper jsHelper;
+public class PracticeFormPage extends CommonPage{
 
     public PracticeFormPage(WebDriver driver) {
-        this.driver = driver;
-        elementsMethods = new ElementsMethods(driver);
-        jsHelper = new JSHelper(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(id = "firstName")
-    WebElement firstNameField;
+    private WebElement firstNameField;
 
     @FindBy(id = "lastName")
-    WebElement lastNameField;
+    private WebElement lastNameField;
 
     @FindBy(id = "userEmail")
-    WebElement userEmailField;
+    private WebElement userEmailField;
 
     @FindBy(xpath = "//label[starts-with(@for, 'gender-radio-')]")
-    List<WebElement> genderRadioButtons;
+    private List<WebElement> genderRadioButtons;
 
     @FindBy(css = "input[placeholder='Mobile Number']")
-    WebElement phoneField;
+    private WebElement phoneField;
 
     @FindBy(xpath = "//div[@id='subjectsContainer']")
-    WebElement subjectField;
+    private WebElement subjectField;
 
     @FindBy(id = "subjectsInput")
-    WebElement subjectFieldById;
+    private WebElement subjectFieldById;
 
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-1']")
-    WebElement sportHobbyCheckbox;
+    private WebElement sportHobbyCheckbox;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-2']")
-    WebElement readingHobbyCheckbox;
+    private WebElement readingHobbyCheckbox;
 
     @FindBy(xpath = "//label[@for='hobbies-checkbox-3']")
-    WebElement musicHobbyCheckbox;
+    private WebElement musicHobbyCheckbox;
 
     @FindBy(id = "uploadPicture")
-    WebElement chooseFileButton;
+    private WebElement chooseFileButton;
 
     @FindBy(id = "currentAddress")
-    WebElement addressField;
+    private WebElement addressField;
 
     @FindBy(id = "react-select-3-input")
-    WebElement stateDropdown;
+    private WebElement stateDropdown;
 
     @FindBy(id = "react-select-4-input")
-    WebElement cityDropdown;
+    private WebElement cityDropdown;
 
     @FindBy(id = "submit")
-    WebElement submitButton;
+    private WebElement submitButton;
+
+    @FindBy(xpath = "//tr")
+    private List<WebElement> table2Rows;
+
+
+    public String getTableRowText(Integer index){
+        elementsMethods.explicitlyWaitElementVisibility(table2Rows.get(index));
+        return table2Rows.get(index).getText();
+    }
 
     public void fillInStudentRegistrationForm(String firstName, String lastName, String email, String address, String phoneNumber){
         elementsMethods.fillElement(firstNameField, firstName);

@@ -16,8 +16,6 @@ import java.util.List;
 
 public class WebTableTest extends BaseTest {
 
-    public ElementsMethods elementsMethods;
-    public JSHelper jsHelper;
     public HomePage homePage;
     public CommonPage commonPage;
     public WebTablePage webTablePage;
@@ -26,12 +24,10 @@ public class WebTableTest extends BaseTest {
     @Test
     public void automationMethod() {
 
-        elementsMethods = new ElementsMethods(driver);
-        jsHelper = new JSHelper(driver);
-        homePage = new HomePage(driver);
-        commonPage = new CommonPage(driver);
-        webTablePage = new WebTablePage(driver);
-        assertMethods = new AssertMethods(driver);
+        homePage = new HomePage(getDriver());
+        commonPage = new CommonPage(getDriver());
+        webTablePage = new WebTablePage(getDriver());
+        assertMethods = new AssertMethods(getDriver());
 
         homePage.goToDesiredMenuValue("Elements");
         commonPage.goToDesiredElement("Web Tables");
@@ -43,6 +39,5 @@ public class WebTableTest extends BaseTest {
         Integer expectedTableSize = initialTableSize + 1;
         Integer actualTableSize = webTablePage.getTableSize();
         assertMethods.verifyExpectedValueEqualsActualValue(actualTableSize, expectedTableSize);
-        driver.close();
     }
 }

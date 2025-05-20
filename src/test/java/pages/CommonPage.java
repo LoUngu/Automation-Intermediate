@@ -1,7 +1,6 @@
 package pages;
 
-import HelperMethods.ElementsMethods;
-import HelperMethods.JSHelper;
+import HelperMethods.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,14 +10,20 @@ import java.util.List;
 
 public class CommonPage {
 
-    WebDriver driver;
-    public ElementsMethods elementsMethods;
-    public JSHelper jsHelper;
+    protected WebDriver driver;
+    protected ElementsMethods elementsMethods;
+    protected JSHelper jsHelper;
+    protected FramesMethods framesMethods;
+    protected BrowserWindowsMethods browserWindowsMethods;
+    protected AlertsMethods alertsMethods;
 
     public CommonPage(WebDriver driver) {
         this.driver = driver;
         elementsMethods = new ElementsMethods(driver);
         jsHelper = new JSHelper(driver);
+        framesMethods = new FramesMethods(driver);
+        browserWindowsMethods = new BrowserWindowsMethods(driver);
+        alertsMethods = new AlertsMethods(driver);
         PageFactory.initElements(driver, this);
     }
 

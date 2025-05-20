@@ -2,7 +2,6 @@ package pages;
 
 import HelperMethods.BrowserWindowsMethods;
 import HelperMethods.ElementsMethods;
-import HelperMethods.FramesMethods;
 import HelperMethods.JSHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,29 +10,20 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class BrowserWindowsAndTabsPage {
-
-    WebDriver driver;
-    public ElementsMethods elementsMethods;
-    public JSHelper jsHelper;
-    public BrowserWindowsMethods browserWindowsMethods;
+public class BrowserWindowsAndTabsPage extends CommonPage{
 
     public BrowserWindowsAndTabsPage(WebDriver driver) {
-        this.driver = driver;
-        browserWindowsMethods = new BrowserWindowsMethods(driver);
-        elementsMethods = new ElementsMethods(driver);
-        jsHelper = new JSHelper(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(id = "tabButton")
-    WebElement tabButtonElement;
+    private WebElement tabButtonElement;
 
     @FindBy(id = "windowButton")
-    WebElement windowButtonElement;
+    private WebElement windowButtonElement;
 
     @FindBy(id = "sampleHeading")
-    WebElement tabSampleHeadingElement;
+    private WebElement tabSampleHeadingElement;
 
     public String getTextFromHeading() {
         return elementsMethods.retrieveElementText(tabSampleHeadingElement);
@@ -46,8 +36,10 @@ public class BrowserWindowsAndTabsPage {
     public void clickOnWindowsButton(){
         elementsMethods.clickOnElement(windowButtonElement);
     }
-    public void navigateToGivenWindow(List<String> windowsList, Integer index){
-        browserWindowsMethods.navigateToWindow(windowsList, index);
+    public void navigateToGivenTabOrWindow(Integer index){
+        List<String> tabList = browserWindowsMethods.getCurrentWindowsOrTabSituation();
+        browserWindowsMethods.navigateToWindow(tabList, index);
     }
 
 }
+

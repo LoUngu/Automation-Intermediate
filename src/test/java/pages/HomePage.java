@@ -9,21 +9,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class HomePage {
-
-    WebDriver driver;
-    public ElementsMethods elementsMethods;
-    public JSHelper jsHelper;
-
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-        elementsMethods = new ElementsMethods(driver);
-        jsHelper = new JSHelper(driver);
-        PageFactory.initElements(driver, this);
-    }
+public class HomePage extends CommonPage{
 
     @FindBy(xpath = "//h5")
-    List<WebElement> headers;
+    private List<WebElement> headers;
+
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
 
     public void goToDesiredMenuValue(String text){
         jsHelper.scrollOnPage(0, 400);
