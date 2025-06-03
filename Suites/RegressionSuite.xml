@@ -3,7 +3,7 @@
 <suite name="Suite" parallel="classes" thread-count="5">
     <test name="Test Basics 1">
         <packages>  
-            <package name="Tests.*"/>
+            <package name="Tests"/>
         </packages>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
