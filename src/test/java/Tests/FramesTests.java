@@ -1,15 +1,13 @@
 package Tests;
 
 import HelperMethods.AssertMethods;
-import HelperMethods.ElementsMethods;
-import HelperMethods.FramesMethods;
-import HelperMethods.JSHelper;
+import SharedData.BaseTest;
 import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.FramesPage;
 import pages.HomePage;
 
-public class FramesTests extends BaseTest{
+public class FramesTests extends BaseTest {
 
     public HomePage homePage;
     public CommonPage commonPage;

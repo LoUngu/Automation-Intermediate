@@ -1,12 +1,12 @@
 package Tests;
 
-import HelperMethods.AlertsMethods;
+import SharedData.BaseTest;
 import org.testng.annotations.Test;
 import pages.AlertsPage;
 import pages.CommonPage;
 import pages.HomePage;
 
-public class AlertTest extends BaseTest{
+public class AlertTest extends BaseTest {
 
     public HomePage homePage;
     public CommonPage commonPage;

@@ -1,7 +1,7 @@
 package Tests;
 
 import HelperMethods.AssertMethods;
-import HelperMethods.ElementsMethods;
+import SharedData.BaseTest;
 import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;

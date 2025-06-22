@@ -1,16 +1,13 @@
 package Tests;
 
 import HelperMethods.AssertMethods;
-import HelperMethods.BrowserWindowsMethods;
-import HelperMethods.ElementsMethods;
-import HelperMethods.JSHelper;
+import SharedData.BaseTest;
 import org.testng.annotations.Test;
 import pages.BrowserWindowsAndTabsPage;
 import pages.CommonPage;
 import pages.HomePage;
-import java.util.List;
 
-public class BrowserWindowsAndTabsTests extends BaseTest{
+public class BrowserWindowsAndTabsTests extends BaseTest {
 
     public HomePage homePage;
     public CommonPage commonPage;

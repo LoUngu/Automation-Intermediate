@@ -1,18 +1,11 @@
 package Tests;
 
 import HelperMethods.AssertMethods;
-import HelperMethods.ElementsMethods;
-import HelperMethods.JSHelper;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+import SharedData.BaseTest;
 import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;
 import pages.WebTablePage;
-
-import java.util.List;
 
 public class WebTableTest extends BaseTest {
 
