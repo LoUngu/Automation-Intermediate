@@ -1,14 +1,13 @@
 package Tests;
 
 import HelperMethods.AssertMethods;
+import ObjectData.PracticeFormObject;
+import PropertyUtility.PropertyUtility;
 import SharedData.BaseTest;
 import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;
 import pages.PracticeFormPage;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class PracticeFormTest extends BaseTest {
 
@@ -20,6 +19,9 @@ public class PracticeFormTest extends BaseTest {
     @Test
     public void fillInTheForm() {
 
+        PropertyUtility propertyUtility = new PropertyUtility("PracticeFormTest");
+        PracticeFormObject practiceFormObject = new PracticeFormObject(propertyUtility.getAllData());
+
         homePage = new HomePage(getDriver());
         commonPage = new CommonPage(getDriver());
         assertMethods = new AssertMethods(getDriver());
@@ -28,21 +30,18 @@ public class PracticeFormTest extends BaseTest {
         homePage.goToDesiredMenuValue("Forms");
         commonPage.goToDesiredElement("Practice Form");
 
-        practiceFormPage.fillInStudentRegistrationForm("Ion", "Popescu", "ion.popescu@email.com", "Str. Strada, Nr. 1", "0720000000");
+        practiceFormPage.fillInStudentRegistrationForm(practiceFormObject);
 
-        practiceFormPage.selectGender("Male");
+        practiceFormPage.selectGender(practiceFormObject);
 
-//        practiceFormPage.fillInSubjectField("Maths");
-        List<String> subjectValues = Arrays.asList("Maths", "English");
-        practiceFormPage.completeSubjectFiledWithList(subjectValues);
+        practiceFormPage.completeSubjectFiledWithList(practiceFormObject);
 
-        List<String> hobbieslist = Arrays.asList("Sports", "reading");
-        practiceFormPage.selectHobbies(hobbieslist);
+        practiceFormPage.selectHobbies(practiceFormObject);
 
         practiceFormPage.uploadPicture();
 
-        practiceFormPage.selectState("NCR");
-        practiceFormPage.selectCity("Delhi");
+        practiceFormPage.selectState(practiceFormObject);
+        practiceFormPage.selectCity(practiceFormObject);
 
         practiceFormPage.clickOnSubmit();
 

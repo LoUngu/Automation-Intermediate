@@ -1,5 +1,8 @@
 package pages;
 
+import ObjectData.AlertsObject;
+import ObjectData.PracticeFormObject;
+import PropertyUtility.PropertyUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -50,6 +53,10 @@ public class AlertsPage extends CommonPage{
 
     public void dismissPromptAlert(){
         clickOnPromptAlertButton();
-        alertsMethods.interractWithPromptAlert("Automation test");
+
+        PropertyUtility propertyUtility = new PropertyUtility("AlertsTest");
+        AlertsObject alertsObject = new AlertsObject(propertyUtility.getAllData());
+        PracticeFormObject practiceFormObject = new PracticeFormObject(propertyUtility.getAllData());
+        alertsMethods.interractWithPromptAlert(alertsObject.getTextToSend());
     }
 }

@@ -14,6 +14,7 @@ public class ChromeBrowserService implements BrowserService{
     @Override
     public void openBrowser(DriverConfigNode driverConfigNode) {
         ChromeOptions options = (ChromeOptions) getBrowserOptions(driverConfigNode);
+        System.setProperty("webdriver.chrome.driver", "C:\\users\\loungureanu\\.cache\\selenium\\chromedriver\\win64\\137.0.7151.119\\chromedriver.exe");
         driver = new ChromeDriver(options);
         driver.get(driverConfigNode.url);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

@@ -1,5 +1,6 @@
 package pages;
 
+import ObjectData.PracticeFormObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -67,16 +68,16 @@ public class PracticeFormPage extends CommonPage{
         return table2Rows.get(index).getText();
     }
 
-    public void fillInStudentRegistrationForm(String firstName, String lastName, String email, String address, String phoneNumber){
-        elementsMethods.fillElement(firstNameField, firstName);
-        elementsMethods.fillElement(lastNameField, lastName);
-        elementsMethods.fillElement(userEmailField, email);
-        elementsMethods.fillElement(addressField, address);
-        elementsMethods.fillElement(phoneField, phoneNumber);
+    public void fillInStudentRegistrationForm(PracticeFormObject practiceFormObject){
+        elementsMethods.fillElement(firstNameField, practiceFormObject.getFirstName());
+        elementsMethods.fillElement(lastNameField, practiceFormObject.getLastName());
+        elementsMethods.fillElement(userEmailField, practiceFormObject.getEmail());
+        elementsMethods.fillElement(addressField, practiceFormObject.getAddress());
+        elementsMethods.fillElement(phoneField, practiceFormObject.getPhoneNumber());
     }
 
-    public void selectGender(String genderValue){
-        elementsMethods.selectElementFromListByText(genderRadioButtons, genderValue);
+    public void selectGender(PracticeFormObject practiceFormObject){
+        elementsMethods.selectElementFromListByText(genderRadioButtons, practiceFormObject.getGender());
     }
 
     public void fillInSubjectField(String subjectText){
@@ -84,14 +85,14 @@ public class PracticeFormPage extends CommonPage{
         elementsMethods.fillInFieldWithActions(subjectField, subjectText);
     }
 
-    public void completeSubjectFiledWithList(List<String> list){
+    public void completeSubjectFiledWithList(PracticeFormObject practiceFormObject){
         elementsMethods.clickOnElement(subjectFieldById);
-        elementsMethods.fillMultipleValues(subjectFieldById, list);
+        elementsMethods.fillMultipleValues(subjectFieldById, practiceFormObject.getSubjects());
     }
 
-    public void selectHobbies(List<String> hobbiesList){
+    public void selectHobbies(PracticeFormObject practiceFormObject){
         List<WebElement> hobbieElements = Arrays.asList(sportHobbyCheckbox, readingHobbyCheckbox, musicHobbyCheckbox);
-        elementsMethods.clickMultipleElements(hobbieElements, hobbiesList);
+        elementsMethods.clickMultipleElements(hobbieElements, practiceFormObject.getHobbies());
     }
 
     public void clickOnSubmit(){
@@ -103,12 +104,12 @@ public class PracticeFormPage extends CommonPage{
 
     }
 
-    public void selectState(String stateValue){
-        elementsMethods.selectGivenDropdownValue(stateDropdown, stateValue);
+    public void selectState(PracticeFormObject practiceFormObject){
+        elementsMethods.selectGivenDropdownValue(stateDropdown, practiceFormObject.getState());
     }
 
-    public void selectCity(String cityValue){
-        elementsMethods.selectGivenDropdownValue(cityDropdown, cityValue);
+    public void selectCity(PracticeFormObject practiceFormObject){
+        elementsMethods.selectGivenDropdownValue(cityDropdown, practiceFormObject.getCity());
     }
 }
 

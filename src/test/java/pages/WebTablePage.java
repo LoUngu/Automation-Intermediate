@@ -1,5 +1,6 @@
 package pages;
 
+import ObjectData.WebTableObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,14 +52,14 @@ public class WebTablePage extends CommonPage{
         elementsMethods.clickOnElement(submitButton);
     }
 
-    public void fillInRegistrationFormAndClickOnSubmit(String fname, String lname, String email, String age, String salary, String department){
+    public void fillInRegistrationFormAndClickOnSubmit(WebTableObject webTableObject){
         clickOnAddButton();
-        elementsMethods.fillElement(firstNameField, fname);
-        elementsMethods.fillElement(lastNameField, lname);
-        elementsMethods.fillElement(userEmailField, email);
-        elementsMethods.fillElement(ageField, age);
-        elementsMethods.fillElement(salaryField, salary);
-        elementsMethods.fillElement(departmentField, department);
+        elementsMethods.fillElement(firstNameField, webTableObject.getFirstName());
+        elementsMethods.fillElement(lastNameField, webTableObject.getLastName());
+        elementsMethods.fillElement(userEmailField, webTableObject.getEmail());
+        elementsMethods.fillElement(ageField, webTableObject.getAge());
+        elementsMethods.fillElement(salaryField, webTableObject.getSalary());
+        elementsMethods.fillElement(departmentField, webTableObject.getDepartment());
         clickOnSubmitButton();
     }
 }

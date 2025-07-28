@@ -1,6 +1,9 @@
 package Tests;
 
 import HelperMethods.AssertMethods;
+import ObjectData.PracticeFormObject;
+import ObjectData.WebTableObject;
+import PropertyUtility.PropertyUtility;
 import SharedData.BaseTest;
 import org.testng.annotations.Test;
 import pages.CommonPage;
@@ -27,7 +30,10 @@ public class WebTableTest extends BaseTest {
 
         Integer initialTableSize = webTablePage.getTableSize();
 
-        webTablePage.fillInRegistrationFormAndClickOnSubmit("Ion", "Popescu", "ion.popescu@email.com", "18", "10000", "IT");
+        PropertyUtility propertyUtility = new PropertyUtility("WebTableTest");
+        WebTableObject webTableObject = new WebTableObject(propertyUtility.getAllData());
+
+        webTablePage.fillInRegistrationFormAndClickOnSubmit(webTableObject);
 
         Integer expectedTableSize = initialTableSize + 1;
         Integer actualTableSize = webTablePage.getTableSize();
